@@ -50,7 +50,6 @@ export const cubeAnimation = (
 
   const radians = (Math.abs(rotateY) * Math.PI) / 180;
   const translateX = halfWidth * Math.sin(radians) * (progress < 0 ? -1 : 1);
-  const translateZ = halfWidth * (1 - Math.cos(radians));
 
   const opacity = interpolate(
     Math.abs(progress),

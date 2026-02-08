@@ -72,8 +72,8 @@ export type { NewspaperConfig } from './creative/newspaper';
 export { origamiAnimation, ORIGAMI_DEFAULTS } from './creative/origami';
 export type { OrigamiConfig } from './creative/origami';
 
-export { carousel3dAnimation, CAROUSEL_3D_DEFAULTS } from './creative/carousel3d';
-export type { Carousel3dConfig } from './creative/carousel3d';
+export { carousel3dAnimation, CAROUSEL3D_DEFAULTS } from './creative/carousel3d';
+export type { Carousel3DConfig } from './creative/carousel3d';
 
 export { waveAnimation, WAVE_DEFAULTS } from './creative/wave';
 export type { WaveConfig } from './creative/wave';

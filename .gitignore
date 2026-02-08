@@ -31,6 +31,9 @@ claude_output/
 .anthropic/
 .cursor/
 
+# Bug reports (private)
+BUG_REPORT.md
+
 # API keys & tokens
 *.secret
 .npmrc

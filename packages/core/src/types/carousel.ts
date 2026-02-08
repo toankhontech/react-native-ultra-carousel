@@ -6,7 +6,7 @@
 import type { ViewStyle, StyleProp } from 'react-native';
 import type { SharedValue } from 'react-native-reanimated';
 import type { PanGesture } from 'react-native-gesture-handler';
-import type { AnimatedItemStyle, CustomAnimationFn } from './animation';
+import type { CustomAnimationFn } from './animation';
 import type { CarouselPlugin } from './plugin';
 import type { PaginationConfig, PaginationRenderInfo } from './pagination';
 

@@ -3,7 +3,6 @@
  * @description Visual test cases for the Carousel component
  */
 
-import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { Carousel } from './Carousel';
 import type { PresetName } from '../types';

@@ -14,14 +14,14 @@ import React, {
 } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { GestureDetector, GestureHandlerRootView } from 'react-native-gesture-handler';
-import { useSharedValue, runOnJS } from 'react-native-reanimated';
-import type { CarouselProps, CarouselRef, CustomAnimationFn } from '../types';
-import { CarouselItem } from './CarouselItem';
+import type { CarouselProps, CarouselRef, CustomAnimationFn, RenderItemInfo } from '../types';
+import { CarouselItem, type CarouselItemProps } from './CarouselItem';
 import { Pagination } from './Pagination';
 import { AutoPlayController } from './AutoPlayController';
 import { useCarouselGesture } from '../hooks/useCarouselGesture';
 import { useSnapPoints } from '../hooks/useSnapPoints';
 import { usePagination } from '../hooks/usePagination';
+import { useAnimationProgress } from '../hooks/useAnimationProgress';
 import type { UseAutoPlayReturn } from '../hooks/useAutoPlay';
 import { getEffectiveItemSize } from '../utils/layout';
 import { getCarouselAccessibilityProps } from '../utils/accessibility';
@@ -34,6 +34,37 @@ import {
   DEFAULT_PAGINATION_GAP,
 } from '../utils/constants';
 import { clamp } from '../utils/math';
+
+/**
+ * Wrapper component for each carousel item.
+ * Hooks (useAnimationProgress) are called at the top level of this
+ * component instead of inside a useMemo/map loop, which satisfies
+ * React's Rules of Hooks.
+ */
+interface ItemRendererProps<T> extends Omit<CarouselItemProps, 'children'> {
+  item: T;
+  renderItem: (info: RenderItemInfo<T>) => React.ReactNode;
+}
+
+function ItemRenderer<T>({ item, renderItem, ...itemProps }: ItemRendererProps<T>) {
+  const animationProgress = useAnimationProgress(
+    itemProps.index,
+    itemProps.scrollOffset,
+    itemProps.itemWidth,
+    itemProps.gap
+  );
+
+  return (
+    <CarouselItem {...itemProps}>
+      {renderItem({
+        item,
+        index: itemProps.index,
+        animationProgress,
+        isActive: itemProps.isActive,
+      })}
+    </CarouselItem>
+  );
+}
 
 /**
  * The main Carousel component.
@@ -78,8 +109,8 @@ const CarouselComponent = <T,>(
     onScrollEnd,
     scrollProgress: externalScrollProgress,
     plugins,
-    maxRenderItems = 0,
-    renderBuffer = 2,
+    maxRenderItems: _maxRenderItems = 0,
+    renderBuffer: _renderBuffer = 2,
     accessible = true,
     accessibilityLabel,
     style,
@@ -119,7 +150,7 @@ const CarouselComponent = <T,>(
   const {
     gesture,
     offset,
-    activeIndex,
+    activeIndex: _activeIndex,
     snapToIndex,
   } = useCarouselGesture({
     totalItems,
@@ -262,49 +293,24 @@ const CarouselComponent = <T,>(
     [carouselRef]
   );
 
-  const renderItems = useMemo(() => {
-    return data.map((item, index) => {
-      const isActive = index === currentIndex;
-      const progress = useSharedValue(0);
-
-      return (
-        <CarouselItem
-          key={index}
-          index={index}
-          totalItems={totalItems}
-          scrollOffset={offset}
-          itemWidth={itemWidth}
-          itemHeight={itemHeight}
-          gap={gap}
-          preset={preset as string | CustomAnimationFn}
-          animationConfig={animationConfig}
-          isActive={isActive}
-          accessible={accessible}
-          style={itemStyle}
-        >
-          {renderItem({
-            item,
-            index,
-            animationProgress: progress,
-            isActive,
-          })}
-        </CarouselItem>
-      );
-    });
-  }, [
-    data,
-    currentIndex,
-    totalItems,
-    offset,
-    itemWidth,
-    itemHeight,
-    gap,
-    preset,
-    animationConfig,
-    accessible,
-    itemStyle,
-    renderItem,
-  ]);
+  const renderItems = data.map((item, index) => (
+    <ItemRenderer
+      key={index}
+      item={item}
+      renderItem={renderItem}
+      index={index}
+      totalItems={totalItems}
+      scrollOffset={offset}
+      itemWidth={itemWidth}
+      itemHeight={itemHeight}
+      gap={gap}
+      preset={preset as string | CustomAnimationFn}
+      animationConfig={animationConfig}
+      isActive={index === currentIndex}
+      accessible={accessible}
+      style={itemStyle}
+    />
+  ));
 
   return (
     <GestureHandlerRootView style={styles.root}>

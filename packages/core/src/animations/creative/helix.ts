@@ -44,14 +44,6 @@ export const helixAnimation = (
 
   const c = { ...HELIX_DEFAULTS, ...config };
 
-  // Map progress to an angle on the helix (full revolution = 2 items)
-  const angle = interpolate(
-    progress,
-    [-1, 0, 1],
-    [-Math.PI, 0, Math.PI],
-    Extrapolation.CLAMP
-  );
-
   // Circular offsets — X follows cosine (lateral), Y follows sine (vertical)
   const translateX = interpolate(
     progress,

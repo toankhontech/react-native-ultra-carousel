@@ -30,7 +30,7 @@ export const PerformanceMonitor: React.FC<PerformanceMonitorProps> = ({
   const [metrics, setMetrics] = useState<Metrics>({ fps: 60, frameDrops: 0, renderCount: 0 });
   const frameCount = useRef(0);
   const dropCount = useRef(0);
-  const lastTimestamp = useRef(performance.now());
+  const lastTimestamp = useRef((globalThis as any).performance?.now() ?? Date.now());
   const renderCount = useRef(0);
 
   renderCount.current++;

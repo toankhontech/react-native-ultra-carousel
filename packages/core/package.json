@@ -1,6 +1,6 @@
 {
   "name": "react-native-ultra-carousel",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "The Ultimate Carousel Ecosystem for React Native. 35+ animation presets, plugin system, CLI tool. Built on Reanimated.",
   "main": "lib/commonjs/index.js",
   "module": "lib/module/index.js",
@@ -16,6 +16,7 @@
   ],
   "scripts": {
     "build": "bob build",
+    "prepublishOnly": "bob build",
     "test": "jest",
     "typecheck": "tsc --noEmit",
     "lint": "eslint src/ --ext .ts,.tsx",
@@ -52,8 +53,13 @@
   "peerDependencies": {
     "react": ">=18.0.0",
     "react-native": ">=0.72.0",
-    "react-native-reanimated": ">=3.0.0",
+    "react-native-reanimated": ">=3.0.0 <4.0.0 || >=4.0.0",
     "react-native-gesture-handler": ">=2.9.0"
+  },
+  "peerDependenciesMeta": {
+    "react-native-reanimated": {
+      "optional": false
+    }
   },
   "devDependencies": {
     "@types/react": "^18.2.0",

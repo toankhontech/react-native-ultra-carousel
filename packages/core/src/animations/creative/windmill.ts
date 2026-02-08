@@ -50,9 +50,6 @@ export const windmillAnimation = (
     Extrapolation.CLAMP
   );
 
-  // Convert rotation to radians for circular path calculation
-  const radians = (rotate * Math.PI) / 180;
-
   const translateX = interpolate(
     progress,
     [-1, 0, 1],

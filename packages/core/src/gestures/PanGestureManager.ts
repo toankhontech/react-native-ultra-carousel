@@ -10,7 +10,7 @@ import {
   runOnJS,
 } from 'react-native-reanimated';
 import { useCallback, useMemo } from 'react';
-import { DEFAULT_SPRING_CONFIG, DEFAULT_VELOCITY_THRESHOLD } from '../utils/constants';
+import { DEFAULT_SPRING_CONFIG } from '../utils/constants';
 import { clamp } from '../utils/math';
 import { findNearestSnapIndex } from '../utils/layout';
 

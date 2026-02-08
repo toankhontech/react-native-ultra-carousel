@@ -38,6 +38,18 @@ yarn add react-native-ultra-carousel react-native-reanimated react-native-gestur
 
 > Make sure to follow the installation guides for [react-native-reanimated](https://docs.swmansion.com/react-native-reanimated/docs/fundamentals/getting-started) and [react-native-gesture-handler](https://docs.swmansion.com/react-native-gesture-handler/docs/fundamentals/installation).
 
+### Compatibility
+
+| Environment | Supported Versions |
+|---|---|
+| React | >= 18.0.0 (including React 19) |
+| React Native | >= 0.72.0 |
+| react-native-reanimated | >= 3.0.0 |
+| react-native-gesture-handler | >= 2.9.0 |
+| Expo SDK | 50, 51, 52, 53 |
+
+> **Expo Go note:** If you encounter a Worklets version mismatch error with `react-native-reanimated` >= 4.x in Expo Go, use a [development build](https://docs.expo.dev/develop/development-builds/introduction/) instead, or pin reanimated to `~3.16.0` for Expo SDK 53 compatibility.
+
 ### Basic Usage
 
 ```tsx
