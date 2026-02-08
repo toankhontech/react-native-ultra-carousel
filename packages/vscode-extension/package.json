@@ -1,0 +1,28 @@
+{
+  "name": "ultra-carousel-snippets",
+  "displayName": "Ultra Carousel Snippets",
+  "description": "Code snippets and IntelliSense for react-native-ultra-carousel",
+  "version": "0.1.0",
+  "publisher": "toankhontech",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": ["Snippets"],
+  "contributes": {
+    "snippets": [
+      {
+        "language": "typescriptreact",
+        "path": "./snippets/tsx.json"
+      },
+      {
+        "language": "typescript",
+        "path": "./snippets/tsx.json"
+      }
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/toankhontech/react-native-ultra-carousel"
+  },
+  "license": "MIT"
+}

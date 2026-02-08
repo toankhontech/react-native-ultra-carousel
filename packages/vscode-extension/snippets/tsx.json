@@ -1,0 +1,149 @@
+{
+  "Ultra Carousel Basic": {
+    "prefix": "uc-basic",
+    "body": [
+      "import { Carousel } from 'react-native-ultra-carousel';",
+      "",
+      "<Carousel",
+      "  data={${1:data}}",
+      "  renderItem={({ item }) => (",
+      "    <View style={{ flex: 1 }}>",
+      "      <Text>{item.${2:title}}</Text>",
+      "    </View>",
+      "  )}",
+      "  preset=\"${3|slide,fade,slide-fade,scale,scale-fade,vertical,vertical-fade,parallax,overlap,peek|}\"",
+      "  width={${4:350}}",
+      "  height={${5:200}}",
+      "  pagination",
+      "/>"
+    ],
+    "description": "Basic Ultra Carousel setup"
+  },
+  "Ultra Carousel with Hook": {
+    "prefix": "uc-hook",
+    "body": [
+      "import { Carousel, useCarousel } from 'react-native-ultra-carousel';",
+      "",
+      "const ${1:carousel} = useCarousel();",
+      "",
+      "<Carousel",
+      "  ref={${1:carousel}.ref}",
+      "  data={${2:data}}",
+      "  renderItem={({ item }) => (",
+      "    <View style={{ flex: 1 }}>",
+      "      <Text>{item.${3:title}}</Text>",
+      "    </View>",
+      "  )}",
+      "  preset=\"${4:slide}\"",
+      "  width={${5:350}}",
+      "  height={${6:200}}",
+      "/>"
+    ],
+    "description": "Ultra Carousel with useCarousel hook"
+  },
+  "Ultra Carousel Auto Play": {
+    "prefix": "uc-autoplay",
+    "body": [
+      "<Carousel",
+      "  data={${1:data}}",
+      "  renderItem={${2:renderItem}}",
+      "  preset=\"${3:slide}\"",
+      "  width={${4:350}}",
+      "  height={${5:200}}",
+      "  autoPlay",
+      "  autoPlayInterval={${6:3000}}",
+      "  pagination",
+      "/>"
+    ],
+    "description": "Ultra Carousel with auto play"
+  },
+  "Ultra Carousel Custom Animation": {
+    "prefix": "uc-custom",
+    "body": [
+      "import { Carousel, type CustomAnimationFn } from 'react-native-ultra-carousel';",
+      "import { interpolate, Extrapolation } from 'react-native-reanimated';",
+      "",
+      "const ${1:myAnimation}: CustomAnimationFn = (progress, index, total) => {",
+      "  'worklet';",
+      "",
+      "  const ${2:rotate} = interpolate(progress, [-1, 0, 1], [-${3:30}, 0, ${3:30}], Extrapolation.CLAMP);",
+      "  const scale = interpolate(Math.abs(progress), [0, 1], [1, ${4:0.8}], Extrapolation.CLAMP);",
+      "",
+      "  return {",
+      "    transform: [",
+      "      { rotate: `\\${${2:rotate}}deg` },",
+      "      { scale },",
+      "    ],",
+      "    opacity: interpolate(Math.abs(progress), [0, 1], [1, ${5:0.5}], Extrapolation.CLAMP),",
+      "  };",
+      "};",
+      "",
+      "<Carousel",
+      "  data={${6:data}}",
+      "  renderItem={${7:renderItem}}",
+      "  preset={${1:myAnimation}}",
+      "  width={${8:350}}",
+      "  height={${9:200}}",
+      "/>"
+    ],
+    "description": "Ultra Carousel with custom animation"
+  },
+  "Ultra Carousel Plugin": {
+    "prefix": "uc-plugin",
+    "body": [
+      "import { createPlugin } from 'react-native-ultra-carousel';",
+      "",
+      "const ${1:myPlugin} = createPlugin({",
+      "  name: '${2:my-plugin}',",
+      "  onInit: (carousel) => {",
+      "    ${3:// carousel initialized}",
+      "  },",
+      "  onIndexChange: (index) => {",
+      "    ${4:console.log('Index:', index);}",
+      "  },",
+      "  onDestroy: () => {",
+      "    ${5:// cleanup}",
+      "  },",
+      "});"
+    ],
+    "description": "Ultra Carousel plugin"
+  },
+  "Ultra Carousel Preset Import": {
+    "prefix": "uc-import",
+    "body": [
+      "import { Carousel, useCarousel } from 'react-native-ultra-carousel';",
+      "import type { PresetName } from 'react-native-ultra-carousel';"
+    ],
+    "description": "Import Ultra Carousel"
+  },
+  "Ultra Carousel Advanced": {
+    "prefix": "uc-advanced",
+    "body": [
+      "<Carousel",
+      "  data={${1:data}}",
+      "  renderItem={${2:renderItem}}",
+      "  preset=\"${3|stack,tinder,coverflow,cube,flip,wheel,accordion,zoom,rotate,depth|}\"",
+      "  width={${4:350}}",
+      "  height={${5:200}}",
+      "  pagination={{ type: '${6|dot,bar,number,progress|}' }}",
+      "  gap={${7:12}}",
+      "  loop",
+      "/>"
+    ],
+    "description": "Ultra Carousel with advanced preset"
+  },
+  "Ultra Carousel Creative": {
+    "prefix": "uc-creative",
+    "body": [
+      "<Carousel",
+      "  data={${1:data}}",
+      "  renderItem={${2:renderItem}}",
+      "  preset=\"${3|newspaper,origami,carousel-3d,wave,spiral,glitch,morph,shutter,domino,elastic,blur-slide,windmill,film-strip,helix,gravity|}\"",
+      "  width={${4:350}}",
+      "  height={${5:200}}",
+      "  pagination",
+      "/>"
+    ],
+    "description": "Ultra Carousel with creative preset"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "expo": {
+    "name": "Ultra Carousel Playground",
+    "slug": "ultra-carousel-playground",
+    "version": "1.0.0",
+    "scheme": "ultra-carousel",
+    "platforms": ["ios", "android", "web"],
+    "newArchEnabled": true,
+    "plugins": ["expo-router"]
+  }
+}

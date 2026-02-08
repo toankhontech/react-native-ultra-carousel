@@ -1,6 +1,6 @@
 {
   "name": "react-native-ultra-carousel",
-  "version": "0.5.0",
+  "version": "1.0.0",
   "description": "The Ultimate Carousel Ecosystem for React Native. 35+ animation presets, plugin system, CLI tool. Built on Reanimated.",
   "main": "lib/commonjs/index.js",
   "module": "lib/module/index.js",

@@ -7,13 +7,14 @@ import { Command } from 'commander';
 import { initCommand } from './commands/init';
 import { addCommand } from './commands/add';
 import { listCommand } from './commands/list';
+import { previewCommand } from './commands/preview';
 
 const program = new Command();
 
 program
   .name('ultra-carousel')
   .description('CLI tool for react-native-ultra-carousel')
-  .version('0.1.0');
+  .version('0.5.0');
 
 program
   .command('init')
@@ -32,5 +33,11 @@ program
   .description('List all available animation presets')
   .option('-c, --category <name>', 'filter by category (basic, advanced, creative)')
   .action(listCommand);
+
+program
+  .command('preview')
+  .description('Launch local preview of all presets')
+  .option('-p, --port <number>', 'port number', '8081')
+  .action(previewCommand);
 
 program.parse();
